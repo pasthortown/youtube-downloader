@@ -21,7 +21,7 @@ services:
     links:
     - php1
   php1:
-    image: pasthortown/php:latest
+    image: pasthortown/php-youtubedl:latest
     restart: always
     volumes:
     - ./public_html:/public_html
