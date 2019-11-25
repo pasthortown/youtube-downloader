@@ -1,0 +1,33 @@
+version: '3'
+
+networks:
+  lsytnet:
+    ipam:
+      config:
+        - subnet: 172.29.0.0/24
+
+services:
+  web1:
+    image: nginx:latest
+    restart: always
+    ports:
+    - "80:80"
+    volumes:
+    - ./public_html:/public_html
+    - ./conf.d:/etc/nginx/conf.d
+    networks:
+      lsytnet:
+        ipv4_address: 172.29.0.11
+    links:
+    - php1
+  php1:
+    image: pasthortown/php:latest
+    restart: always
+    volumes:
+    - ./public_html:/public_html
+    - ./videos:/videos
+    networks:
+      lsytnet:
+        ipv4_address: 172.29.0.13
+    environment:
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/.composer/vendor/bin
