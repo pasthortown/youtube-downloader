@@ -5,6 +5,7 @@ function video_info() {
         const formats = data;
         let formatOptions = "<option value=\"0\" selected>Default</option>\n";
         formatOptions = "<option value=\"999\">SOLO MP3</option>\n";
+        formatOptions = "<option value=\"18\">MP4 (18)</option>\n";
         formats.forEach(element => {
             formatOptions += "<option  value=\"" + element.id + "\">" + element.format +"</option>\n";
         });
